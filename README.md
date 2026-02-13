@@ -61,6 +61,9 @@ This can be useful for running audio analysis of a stream.
 docker run --mount type=bind,src=./downloads,dst=/home/streamlink/downloads insanity54/streamlink:latest --stdout --record=/home/streamlink/downloads/stream_$(date +%s%N | cut -b1-13).ts --stream-segmented-duration 00:00:10 twitch.tv/michimochievee audio_only
 ```
 
+## Motivation
+
+I use this streamlink docker image for my commercial website https://confettihat.com. It needs to be robust and highly available so I do my best to make this docker image as good as it can be. I use it in production and hope that it's useful for other people who want to do the same.
 
 
 ## Contributing
