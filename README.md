@@ -17,7 +17,10 @@ Dockerized streamlink
 
 ### Watch a stream
 
-Without docker, streamlink run on a host can be run like this
+Without docker, streamlink run on a host can be run as follows.
+
+> [!IMPORTANT]  
+> The following incantation will not work in this docker container. See below for explanation.
 
     streamlink twitch.tv/michimochievee best
 
@@ -25,19 +28,25 @@ This command opens up the stream for live viewing inside VLC or another media pl
 
 1. Get a unique output filename
 
-    output_file_basename=stream_$(date +%s%N | cut -b1-13).ts
+```shell
+output_file_basename=stream_$(date +%s%N | cut -b1-13).ts
+```
 
 2. In a terminal, have streamlink record the stream to the output file.
 
-    docker run \
-      --mount type=bind,src=./downloads,dst=/home/streamlink/downloads insanity54/streamlink:latest \
-      --stdout \
-      --record=/home/streamlink/$output_file \
-      twitch.tv/michimochievee worst
+```shell
+docker run \
+    --mount type=bind,src=./downloads,dst=/home/streamlink/downloads insanity54/streamlink:latest \
+    --stdout \
+    --record=/home/streamlink/$output_file \
+    twitch.tv/michimochievee worst
+```
 
 3. In a second terminal, watch the output file using cvlc (or other media player)
 
-    cvlc --play-and-exit "${output_file}"
+```shell
+cvlc --play-and-exit "${output_file}"
+```
 
     
 
@@ -46,7 +55,9 @@ This command opens up the stream for live viewing inside VLC or another media pl
 
 This can be useful for running audio analysis of a stream.
 
-    docker run --mount type=bind,src=./downloads,dst=/home/streamlink/downloads insanity54/streamlink:latest --stdout --record=/home/streamlink/downloads/stream_$(date +%s%N | cut -b1-13).ts --stream-segmented-duration 00:00:10 twitch.tv/michimochievee audio_only
+```shell
+docker run --mount type=bind,src=./downloads,dst=/home/streamlink/downloads insanity54/streamlink:latest --stdout --record=/home/streamlink/downloads/stream_$(date +%s%N | cut -b1-13).ts --stream-segmented-duration 00:00:10 twitch.tv/michimochievee audio_only
+```
 
 
 
