@@ -20,7 +20,7 @@ Dockerized streamlink
 Without docker, streamlink run on a host can be run as follows.
 
 > [!IMPORTANT]  
-> The following incantation will not work in this docker container. See below for explanation.
+> This command will not work in this docker container. See below for explanation.
 
     streamlink twitch.tv/michimochievee best
 
@@ -67,3 +67,4 @@ I want to make this docker image as best as it can be. If you have any feedback 
 
 ## Sponsorships
 
+If you find this image useful, please consider donating to support it's continued maintenance. Any amount helps. https://liberapay.com/insanity54
