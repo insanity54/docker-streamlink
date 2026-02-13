@@ -7,7 +7,6 @@ https://github.com/insanity54/docker-streamlink
 Dockerized streamlink
 
   * Built for simplicity
-  * Single binary
   * Routine maintenance
   * Continuous Integration
 
@@ -67,6 +66,8 @@ docker run --mount type=bind,src=./downloads,dst=/home/streamlink/downloads insa
 ## Contributing
 
 I want to make this docker image as best as it can be. If you have any feedback or suggestions, create a new topic in the discussions. Feel free to create issues for bug reports.
+
+Note that I fix bugs for free, but I ask for a fee when implementing change requests.
 
 ## Sponsorships
 
