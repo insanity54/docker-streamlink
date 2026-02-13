@@ -1,11 +1,14 @@
 # docker-streamlink
 
+[![Docker Build and Push](https://github.com/insanity54/docker-streamlink/actions/workflows/docker.yaml/badge.svg?branch=main)](https://github.com/insanity54/docker-streamlink/actions/workflows/docker.yaml)
+
 https://github.com/insanity54/docker-streamlink
 
 Dockerized streamlink
 
   * Built for simplicity
   * Single binary
+  * Routine maintenance
   * Continuous Integration
 
 
