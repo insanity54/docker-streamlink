@@ -25,7 +25,7 @@ RUN addgroup -g 1000 streamlink && adduser -u 1000 -D -G streamlink streamlink
 COPY --from=builder /root/wheels /root/wheels
 
 # Install the compiled Streamlink package without the need for internet access
-RUN pip install --no-index --find-links=/root/wheels streamlink
+RUN pip install --root-user-action=ignore --no-index --find-links=/root/wheels streamlink
 
 # Switch to the non-root user
 USER 1000
