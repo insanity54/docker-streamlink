@@ -19,7 +19,7 @@ RUN pip wheel --wheel-dir=/root/wheels streamlink
 FROM base
 
 # Create a non-root user and group
-RUN addgroup -S streamlink && adduser -S streamlink -G streamlink
+RUN addgroup -g 1000 streamlink && adduser -u 1000 -D -G streamlink streamlink
 
 # Copy the compiled wheels from the builder stage into the final image
 COPY --from=builder /root/wheels /root/wheels

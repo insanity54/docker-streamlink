@@ -6,7 +6,7 @@ https://github.com/insanity54/docker-streamlink
 
 Dockerized streamlink
 
-  * A single binary (streamlink) with nothing extra. "The docker way."
+  * A single binary (streamlink) with NOTHING extra. "The docker way."
   * Built for simplicity
   * Immutable github releases
   * Immutable docker tags
@@ -25,7 +25,7 @@ Dockerized streamlink
 Without docker, streamlink run on a host can be run as follows.
 
 > [!IMPORTANT]  
-> This command will not work in this docker container. See below for explanation.
+> The following command will not work in this docker container. See below for explanation.
 
     streamlink twitch.tv/michimochievee best
 
@@ -34,17 +34,18 @@ This command opens up the stream for live viewing inside VLC or another media pl
 1. Get a unique output filename
 
 ```shell
-output_file_basename=stream_$(date +%s%N | cut -b1-13).ts
+output_file=stream_$(date +%s%N | cut -b1-13).ts
 ```
 
 2. In a terminal, have streamlink record the stream to the output file.
 
 ```shell
 docker run \
-    --mount type=bind,src=./downloads,dst=/home/streamlink/downloads insanity54/streamlink:latest \
+    --mount type=bind,src=./downloads,dst=/home/streamlink/downloads \
+    insanity54/streamlink:latest \
     --stdout \
     --record=/home/streamlink/$output_file \
-    twitch.tv/michimochievee worst
+    twitch.tv/michimochievee best
 ```
 
 3. In a second terminal, watch the output file using cvlc (or other media player)
