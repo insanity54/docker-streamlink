@@ -9,7 +9,7 @@ Dockerized streamlink
   * A single binary (streamlink) with NOTHING extra. "The docker way."
   * Built for simplicity
   * Immutable github releases
-  * Immutable docker tags
+  * Immutable docker tags (except for "latest")
   * Routine maintenance
   * Continuous Integration
 
