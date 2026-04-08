@@ -4,6 +4,9 @@ on:
   schedule:
     # Runs every 3 days at midnight
     - cron: '0 0 */3 * *'
+  push:
+    tags:
+      - v*
 
 jobs:
   build:
