@@ -44,6 +44,7 @@ jobs:
       # - name: Push Docker Image
       #   run: docker push insanity54/streamlink:${{ env.streamlink_version }}
 
+
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:
