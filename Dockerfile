@@ -1,5 +1,6 @@
 # Use the official Python Alpine image as the base image
-FROM alpine
+FROM alpine:edge
+
 
 RUN apk update && apk add --no-cache streamlink
 

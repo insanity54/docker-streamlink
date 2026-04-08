@@ -1,0 +1,49 @@
+name: Docker Build and Push
+
+on:
+  schedule:
+    # Runs every 3 days at midnight
+    - cron: '0 0 */3 * *'
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get Streamlink version
+        id: get_version
+        run: |
+          latest_version=$(curl -s https://api.github.com/repos/streamlink/streamlink/releases/latest | jq -r '.tag_name')
+          # Regular expression for SemVer validation
+          if [[ ! "$latest_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: Version $latest_version does not conform to SemVer"
+            exit 1
+          fi
+          echo "Latest Streamlink version is: $latest_version"
+          echo "streamlink_version=$latest_version" >> "$GITHUB_ENV"
+
+      # - name: Log in to Docker Hub
+      #   uses: docker/login-action@v2
+      #   with:
+      #     username: insanity54
+      #     password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      # - name: Build Docker Image
+      #   run: docker build . -t insanity54/streamlink:${{ env.streamlink_version }}
+
+      # - name: Push Docker Image
+      #   run: docker push insanity54/streamlink:${{ env.streamlink_version }}
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v5
+        with:
+          version: "2.14.3"
+          args: release --clean ${{ env.flags }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}

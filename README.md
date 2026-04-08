@@ -8,10 +8,9 @@ Dockerized streamlink
 
   * A single binary (streamlink) with NOTHING extra. "The docker way."
   * Built for simplicity
-  * Immutable github releases
-  * Immutable docker tags (except for "latest")
   * Routine maintenance
   * Continuous Integration
+  * Immutable github releases
 
 
 [Streamlink](https://streamlink.github.io/) is a command-line utility which pipes video streams from various services into a video player, such as VLC or mpv. The main purpose of Streamlink is to avoid resource-heavy and unoptimized websites, while still allowing the user to enjoy various streamed content. There is also a Python API available for developers who want access to the stream data.
