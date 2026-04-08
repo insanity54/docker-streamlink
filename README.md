@@ -6,7 +6,10 @@ https://github.com/insanity54/docker-streamlink
 
 Dockerized streamlink
 
+  * A single binary (streamlink) with nothing extra. "The docker way."
   * Built for simplicity
+  * Immutable github releases
+  * Immutable docker tags
   * Routine maintenance
   * Continuous Integration
 
@@ -68,9 +71,7 @@ I use this streamlink docker image for my commercial website https://confettihat
 
 ## Contributing
 
-Note that I fix bugs for free, but I ask for money when implementing change requests.
-
-If you have any feedback or suggestions, create a new topic in the discussions. Feel free to create issues for bug reports.
+Welcome! If you have any feedback, questions, or suggestions, create a new topic in the discussions. Feel free to create issues for bug reports.
 
 
 ## Sponsorships
