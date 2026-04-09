@@ -21,7 +21,7 @@ dockers_v2:
       - "insanity54/streamlink"
       - "ghcr.io/insanity54/streamlink"
     tags:
-      - "v{{ .Version }}"
+      - "{{ .Version }}"
       - "{{ if .IsNightly }}nightly{{ end }}"
       - "{{ if not .IsNightly }}latest{{ end }}"
     labels:
