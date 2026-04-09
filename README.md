@@ -43,7 +43,7 @@ docker run \
     --mount type=bind,src=./downloads,dst=/home/streamlink/downloads \
     insanity54/streamlink:latest \
     --stdout \
-    --record=/home/streamlink/$output_file \
+    --record=/home/streamlink/downloads/$output_file \
     twitch.tv/michimochievee best
 ```
 
