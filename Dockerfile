@@ -13,4 +13,4 @@ RUN addgroup -g 1000 streamlink && \
 USER 1000
 
 # Define the entry point for the container to execute Streamlink
-ENTRYPOINT ["/usr/local/bin/streamlink"]
+ENTRYPOINT ["/usr/bin/streamlink"]

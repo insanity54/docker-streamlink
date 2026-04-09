@@ -2,10 +2,6 @@ version: 2
 
 project_name: streamlink
 
-env:
-  - STREAMLINK_VERSION={{ .Env.STREAMLINK_VERSION }}
-
-
 builds: 
   - skip: true
 
