@@ -16,19 +16,11 @@ Dockerized streamlink
 [Streamlink](https://streamlink.github.io/) is a command-line utility which pipes video streams from various services into a video player, such as VLC or mpv. The main purpose of Streamlink is to avoid resource-heavy and unoptimized websites, while still allowing the user to enjoy various streamed content. There is also a Python API available for developers who want access to the stream data.
 
 
-
 ## Example usage
 
 ### Watch a stream
 
-Without docker, streamlink run on a host can be run as follows.
-
-> [!IMPORTANT]  
-> The following command will not work in this docker container. See below for explanation.
-
-    streamlink twitch.tv/michimochievee best
-
-This command opens up the stream for live viewing inside VLC or another media player. However, with docker, running streamlink is more involved and there are extra layers of complexity. `insanity54/streamlink` does not include a media player like VLC, so you must instead save the stream to a file in a bind mount, and open the file on the host using a media player.
+Streamlink inside docker is a little more involved than you might be used to from the streamlink CLI, because there are extra layers of complexity. `insanity54/streamlink` does not include a media player like VLC, so you must instead save the stream to a file in a bind mount, and open the file on the host using a media player.
 
 1. Get a unique output filename
 
@@ -47,13 +39,13 @@ docker run \
     twitch.tv/michimochievee best
 ```
 
-3. In a second terminal, watch the output file using cvlc (or other media player)
+3. In a second terminal on the host computer, watch the output file using cvlc (or other media player)
 
 ```shell
 cvlc --play-and-exit "${output_file}"
 ```
 
-    
+
 
 
 ### Record 10 seconds of stream audio to a file
@@ -61,12 +53,26 @@ cvlc --play-and-exit "${output_file}"
 This can be useful for running audio analysis of a stream.
 
 ```shell
-docker run --mount type=bind,src=./downloads,dst=/home/streamlink/downloads insanity54/streamlink:latest --stdout --record=/home/streamlink/downloads/stream_$(date +%s%N | cut -b1-13).ts --stream-segmented-duration 00:00:10 twitch.tv/michimochievee audio_only
+docker run \
+    --mount type=bind,src=./downloads,dst=/home/streamlink/downloads insanity54/streamlink:latest \
+    --stdout \
+    --record=/home/streamlink/downloads/stream_$(date +%s%N | cut -b1-13).ts \
+    --stream-segmented-duration 00:00:10 \
+    twitch.tv/michimochievee audio_only
 ```
+
+## Do not do this
+
+You may be used to running streamlink as follows.
+
+> [!IMPORTANT]  
+> The following command will not work in this docker container. See above for correct usage.
+
+    streamlink twitch.tv/michimochievee best
 
 ## Motivation
 
-I use this streamlink docker image for my commercial website https://confettihat.com. It needs to be robust and highly available so I do my best to make this docker image as good as it can be. I use it in production and hope that it's useful for other people who want to do the same.
+I use this streamlink docker image for my twitch streamer tools website https://confettihat.com. It needs to be robust and highly available so I do my best to make this docker image as good as it can be. I use it in production and hope that it's useful for other people who want to do the same.
 
 
 ## Contributing
