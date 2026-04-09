@@ -24,7 +24,7 @@ jobs:
         id: get_version
         run: |
           alpine_image="alpine:edge"
-          streamlink_version=$(docker run --rm "${alpine_image}" /bin/sh -c "apk update && apk add --no-cache jq && apk info streamlink --format json | jq -r '.[0].version'")
+          streamlink_version=$(docker run --rm "alpine:edge" /bin/sh -c "apk update > /dev/null 2>&1 && apk add --no-cache jq > /dev/null 2>&1 && apk info streamlink --format json | jq -r '.[0].version'")
           if [[ -z "$streamlink_version" ]]; then
             echo "Error: Unable to fetch Streamlink version from Alpine"
             exit 1
