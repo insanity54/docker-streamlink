@@ -20,17 +20,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Get Streamlink version
+      - name: Get Streamlink version from Alpine
         id: get_version
         run: |
-          latest_version=$(curl -s https://api.github.com/repos/streamlink/streamlink/releases/latest | jq -r '.tag_name')
-          # Regular expression for SemVer validation
-          if [[ ! "$latest_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Error: Version $latest_version does not conform to SemVer"
+          alpine_image="alpine:edge"
+          streamlink_version=$(docker run --rm "${alpine_image}" /bin/sh -c "apk update && apk add --no-cache jq && apk info streamlink --format json | jq -r '.[0].version'")
+          if [[ -z "$streamlink_version" ]]; then
+            echo "Error: Unable to fetch Streamlink version from Alpine"
             exit 1
           fi
-          echo "Latest Streamlink version is: $latest_version"
-          echo "streamlink_version=$latest_version" >> "$GITHUB_ENV"
+          echo "Latest Streamlink version from Alpine is: $streamlink_version"
+          echo "STREAMLINK_VERSION=$streamlink_version" >> $GITHUB_ENV
 
       - name: dockerhub-login
         uses: docker/login-action@v4
@@ -42,7 +42,7 @@ jobs:
         uses: docker/login-action@v4
         with:
           registry: ghcr.io
-          username: ${{ vars.GHCR_USER }}
+          username: ${{ vars.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_TOKEN }}
 
       # - name: Log in to Docker Hub
