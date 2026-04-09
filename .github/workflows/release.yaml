@@ -69,4 +69,4 @@ jobs:
           args: release --clean ${{ env.flags }}
         env:
           GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}
-          VERSION: ${{ env.STREAMLINK_VERSION }}
+          STREAMLINK_VERSION: ${{ env.STREAMLINK_VERSION }}
