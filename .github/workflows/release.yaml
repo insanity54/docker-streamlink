@@ -43,7 +43,11 @@ jobs:
 
       # - name: Push Docker Image
       #   run: docker push insanity54/streamlink:${{ env.streamlink_version }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
