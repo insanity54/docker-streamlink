@@ -21,7 +21,7 @@ dockers_v2:
       - "insanity54/streamlink"
       - "ghcr.io/insanity54/streamlink"
     tags:
-      - "{{ .Version }}"
+      - "{{ .Env.STREAMLINK_VERSION }}"
       - "{{ if .IsNightly }}nightly{{ end }}"
       - "{{ if not .IsNightly }}latest{{ end }}"
     labels:
@@ -29,7 +29,7 @@ dockers_v2:
       "org.opencontainers.image.created": "{{.Date}}"
       "org.opencontainers.image.name": "{{.ProjectName}}"
       "org.opencontainers.image.revision": "{{.FullCommit}}"
-      "org.opencontainers.image.version": "{{.Version}}"
+      "org.opencontainers.image.version": "{{.Env.STREAMLINK_VERSION}}"
       "org.opencontainers.image.source": "{{.GitURL}}"
     platforms:
       - linux/amd64
