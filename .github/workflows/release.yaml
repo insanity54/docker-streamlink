@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Get Streamlink version from Alpine
         id: get_version
@@ -56,7 +58,9 @@ jobs:
         uses: goreleaser/goreleaser-action@v5
         with:
           version: "2.14.3"
-          args: release --clean ${{ env.flags }}
+          args: >
+            release --clean
+            ${{ github.event_name == 'schedule' && '--snapshot' || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}
           STREAMLINK_VERSION: ${{ env.STREAMLINK_VERSION }}
